@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FactoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'indexView');
     Route::post('/login-post', 'login')->name('login-post');
+});
+
+Route::controller(FactoryController::class)->group(function () {
+    Route::get('create', 'create')->name('create');
 });
