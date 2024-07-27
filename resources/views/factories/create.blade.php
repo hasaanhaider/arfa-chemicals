@@ -20,7 +20,21 @@
             </ul>
         </div>
         <div class="card">
-            <form class="card-body">
+
+            <form class="card-body" method="POST" action="{{ route('factory.store') }}">
+                @if(session('success'))
+                <div
+                    class="flex gap-1 px-4 py-3 text-sm text-green-500 border border-green-200 rounded-md md:items-center bg-green-50 dark:bg-green-400/20 dark:border-green-500/50">
+                    <i data-lucide="alert-circle" class="h-4"></i> {{ session('success') }}
+                </div>
+                @elseif (session('error'))
+                <div
+                    class="flex gap-1 px-4 py-3 text-sm text-red-500 border border-red-200 rounded-md md:items-center bg-red-50 dark:bg-red-400/20 dark:border-red-500/50">
+                    <i data-lucide="alert-circle" class="h-4"></i> {{ session('error') }}
+                </div>
+
+                @endif
+                @csrf
                 <h6 class="mb-4 text-15">Add Factory</h6>
                 <div class="grid items-center grid-cols-1 gap-5 xl:grid-cols-3">
                     <div>
@@ -28,31 +42,41 @@
                         <input type="text" name="name"
                             class="px-5 py-3 text-15 form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                             placeholder="Enter Factory name">
+                        @error('name')
+                        <small>{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
                         <label for="" class="">Address</label>
                         <input type="text" name="address"
                             class="px-5 py-3 text-15 form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                             placeholder="Enter Factory Address">
+                        @error('address')
+                        <small>{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
                         <label for="" class="">NTN Number</label>
                         <input type="text" name="ntn_number"
                             class="px-5 py-3 text-15 form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                             placeholder="Enter Factory NTN">
+                        @error('ntn_number')
+                        <small>{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
-                <button type="submit" class="text-white mt-3 btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Submit</button>
+                <button type="submit"
+                    class="text-white mt-3 btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Submit</button>
 
-            </div>
-            
         </div>
-        <!--end card-->
-
-
 
     </div>
-    <!-- container-fluid -->
+    <!--end card-->
+
+
+
+</div>
+<!-- container-fluid -->
 </div>
 @endsection
 
