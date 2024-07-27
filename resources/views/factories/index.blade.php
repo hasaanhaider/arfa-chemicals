@@ -7,30 +7,39 @@
 
         <div class="flex flex-col gap-2 py-4 md:flex-row md:items-center print:hidden">
             <div class="grow">
-                <h5 class="text-16">Datatable</h5>
+                <h5 class="text-16">
+                    Factories
+                </h5>
             </div>
             <ul class="flex items-center gap-2 text-sm font-normal shrink-0">
                 <li
                     class="relative before:content-['\ea54'] before:font-remix ltr:before:-right-1 rtl:before:-left-1  before:absolute before:text-[18px] before:-top-[3px] ltr:pr-4 rtl:pl-4 before:text-slate-400 dark:text-zink-200">
-                    <a href="#!" class="text-slate-400 dark:text-zink-200">Tables</a>
+                    <a href="#!" class="text-slate-400 dark:text-zink-200">List</a>
                 </li>
                 <li class="text-slate-700 dark:text-zink-100">
-                    Datatable
+                    Factories
                 </li>
             </ul>
         </div>
-        <div
-            class="px-4 py-3 mb-4 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-400/20">
-            This is <b>Datatable</b> page in which we have used <b>jQuery</b> with cdn link!
-        </div>
-
         <div class="card">
             <div class="card-body">
-                <h6 class="mb-4 text-15">Basic</h6>
+                @if(session('success'))
+                <div
+                    class="flex gap-1 px-4 py-3 text-sm text-green-500 border border-green-200 rounded-md md:items-center bg-green-50 dark:bg-green-400/20 dark:border-green-500/50">
+                    <i data-lucide="alert-circle" class="h-4"></i> {{ session('success') }}
+                </div>
+                @elseif (session('error'))
+                <div
+                    class="flex gap-1 px-4 py-3 text-sm text-red-500 border border-red-200 rounded-md md:items-center bg-red-50 dark:bg-red-400/20 dark:border-red-500/50">
+                    <i data-lucide="alert-circle" class="h-4"></i> {{ session('error') }}
+                </div>
+
+                @endif
+                <h6 class="mb-4 text-15">Factories</h6>
                 <table id="basic_tables" class="display stripe group" style="width:100%">
                     <thead>
                         <tr>
-                            <th  class="ltr:!text-left rtl:!text-right">Factory Name</th>
+                            <th class="ltr:!text-left rtl:!text-right">Factory Name</th>
                             <th>NTN Number</th>
                             <th>Address</th>
                             <th>Action</th>
@@ -42,20 +51,33 @@
                             <td>{{ $factory->name }}</td>
                             <td>{{ $factory->ntn_number }}</td>
                             <td>{{ $factory->address }}</td>
-                            <td>61</td>
+                            <td>
+                                <button type="button"
+                                    class="text-yellow-500 bg-yellow-100 btn hover:text-white hover:bg-yellow-600 focus:text-white focus:bg-yellow-600 focus:ring focus:ring-yellow-100 active:text-white active:bg-yellow-600 active:ring active:ring-yellow-100 dark:bg-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500 dark:hover:text-white dark:focus:bg-yellow-500 dark:focus:text-white dark:active:bg-yellow-500 dark:active:text-white dark:ring-yellow-400/20">Edit</button>
+
+                                <form action="{{ route('factory.destroy', $factory->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="text-red-500 bg-red-100 btn hover:text-white hover:bg-red-600 focus:text-white focus:bg-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:ring active:ring-red-100 dark:bg-red-500/20 dark:text-red-500 dark:hover:bg-red-500 dark:hover:text-white dark:focus:bg-red-500 dark:focus:text-white dark:active:bg-red-500 dark:active:text-white dark:ring-red-400/20">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
-                        
-                     
-                         
+
+
+
                     </tbody>
-                   
+
                 </table>
             </div>
         </div>
         <!--end card-->
- 
- 
+
+
 
     </div>
     <!-- container-fluid -->
@@ -63,6 +85,12 @@
 @endsection
 
 @push('script')
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this item?');
+    }
+</script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/js/datatables/datatables.buttons.min.js') }}"></script>
 <script src="{{ asset('assets/js/datatables/jszip.min.js') }}"></script>

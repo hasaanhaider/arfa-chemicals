@@ -38,4 +38,14 @@ class FactoryController extends Controller
             return back()->with('error', $th->getMessage());
         }
     }
+
+    public function destroy($id)
+    {
+        try {
+            $this->factory->delete($id);
+            return back()->with('success', 'Factory deleted successfully');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
+    }
 }

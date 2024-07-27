@@ -47,11 +47,7 @@ class FactoryService
 
     public function delete($id)
     {
-        $job = User::find(Auth::id())->jobs()->find($id);
-        if (!$job) {
-            throw ValidationException::withMessages(['error' => 'Job not found']);
-        }
-        $job->delete();
+        Factory::destroy($id);
     }
 
     protected function validation(array $data)

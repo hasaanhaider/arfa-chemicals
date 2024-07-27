@@ -30,5 +30,6 @@ Route::controller(FactoryController::class)->group(function () {
         Route::get('index', 'index')->name('factory.index');
         Route::get('create', 'create')->name('factory.create');
         Route::post('store', 'store')->name('factory.store');
+        Route::delete('destroy/{id}', 'destroy')->name('factory.destroy');
     });
 });
