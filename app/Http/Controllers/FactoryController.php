@@ -19,6 +19,11 @@ class FactoryController extends Controller
         $this->factory = $factory;
     }
 
+    public function index()
+    {
+        return view('factories.index', ['factories' => $this->factory->getFactories()]);
+    }
+
     public function create()
     {
         return view('factories.create');

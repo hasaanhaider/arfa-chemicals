@@ -27,6 +27,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(FactoryController::class)->group(function () {
     Route::group(['middleware' => 'auth'], function () {
+        Route::get('index', 'index')->name('factory.index');
         Route::get('create', 'create')->name('factory.create');
         Route::post('store', 'store')->name('factory.store');
     });

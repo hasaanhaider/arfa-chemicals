@@ -1,0 +1,76 @@
+@extends('layout')
+
+@section('content')
+<div
+    class="group-data-[sidebar-size=lg]:ltr:md:ml-vertical-menu group-data-[sidebar-size=lg]:rtl:md:mr-vertical-menu group-data-[sidebar-size=md]:ltr:ml-vertical-menu-md group-data-[sidebar-size=md]:rtl:mr-vertical-menu-md group-data-[sidebar-size=sm]:ltr:ml-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:mr-vertical-menu-sm pt-[calc(theme('spacing.header')_*_1)] pb-[calc(theme('spacing.header')_*_0.8)] px-4 group-data-[navbar=bordered]:pt-[calc(theme('spacing.header')_*_1.3)] group-data-[navbar=hidden]:pt-0 group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl group-data-[layout=horizontal]:px-0 group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:ltr:md:ml-auto group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:rtl:md:mr-auto group-data-[layout=horizontal]:md:pt-[calc(theme('spacing.header')_*_1.6)] group-data-[layout=horizontal]:px-3 group-data-[layout=horizontal]:group-data-[navbar=hidden]:pt-[calc(theme('spacing.header')_*_0.9)]">
+    <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
+
+        <div class="flex flex-col gap-2 py-4 md:flex-row md:items-center print:hidden">
+            <div class="grow">
+                <h5 class="text-16">Datatable</h5>
+            </div>
+            <ul class="flex items-center gap-2 text-sm font-normal shrink-0">
+                <li
+                    class="relative before:content-['\ea54'] before:font-remix ltr:before:-right-1 rtl:before:-left-1  before:absolute before:text-[18px] before:-top-[3px] ltr:pr-4 rtl:pl-4 before:text-slate-400 dark:text-zink-200">
+                    <a href="#!" class="text-slate-400 dark:text-zink-200">Tables</a>
+                </li>
+                <li class="text-slate-700 dark:text-zink-100">
+                    Datatable
+                </li>
+            </ul>
+        </div>
+        <div
+            class="px-4 py-3 mb-4 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-400/20">
+            This is <b>Datatable</b> page in which we have used <b>jQuery</b> with cdn link!
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h6 class="mb-4 text-15">Basic</h6>
+                <table id="basic_tables" class="display stripe group" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th  class="ltr:!text-left rtl:!text-right">Factory Name</th>
+                            <th>NTN Number</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($factories as $key => $factory)
+                        <tr>
+                            <td>{{ $factory->name }}</td>
+                            <td>{{ $factory->ntn_number }}</td>
+                            <td>{{ $factory->address }}</td>
+                            <td>61</td>
+                        </tr>
+                        @endforeach
+                        
+                     
+                         
+                    </tbody>
+                   
+                </table>
+            </div>
+        </div>
+        <!--end card-->
+ 
+ 
+
+    </div>
+    <!-- container-fluid -->
+</div>
+@endsection
+
+@push('script')
+<script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/datatables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/buttons.html5.min.') }}js"></script>
+<script src="{{ asset('assets/js/datatables/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/jquery-3.7.0.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/data-tables.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/data-tables.tailwindcss.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/datatables.init.js') }}"></script>
+@endpush

@@ -19,9 +19,9 @@ class FactoryService
      * @return User
      * @throws ValidationException
      */
-    public function getJobs()
+    public function getFactories()
     {
-        return User::find(Auth::user()->id)->jobs;
+        return Factory::all();
     }
     public function createFactory(array $data)
     {
