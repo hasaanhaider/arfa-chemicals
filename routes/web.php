@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FactoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,12 +27,25 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(FactoryController::class)->group(function () {
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'auth', 'prefix' => 'factories'], function () {
         Route::get('index', 'index')->name('factory.index');
         Route::get('create', 'create')->name('factory.create');
         Route::post('store', 'store')->name('factory.store');
         Route::get('edit/{id}', 'edit')->name('factory.edit');
         Route::put('update/{id}', 'update')->name('factory.update');
         Route::delete('destroy/{id}', 'destroy')->name('factory.destroy');
+    });
+});
+
+
+Route::controller(ProductController::class)->group(function () {
+
+    Route::group(['middleware' => 'auth', 'prefix' => 'products'], function () {
+        Route::get('index', 'index')->name('product.index');
+        Route::get('create', 'create')->name('product.create');
+        Route::post('store', 'store')->name('product.store');
+        Route::get('edit/{id}', 'edit')->name('product.edit');
+        Route::put('update/{id}', 'update')->name('product.update');
+        Route::delete('destroy/{id}', 'destroy')->name('product.destroy');
     });
 });
