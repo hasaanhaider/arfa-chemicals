@@ -39,6 +39,21 @@ class FactoryController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        return view('factories.edit', ['factory' => $this->factory->editFactory($id)]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $this->factory->updateFactory($request->all());
+            return back()->with('success', 'Factory updated successfully');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
+    }
+
     public function destroy($id)
     {
         try {

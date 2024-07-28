@@ -52,9 +52,10 @@
                             <td>{{ $factory->ntn_number }}</td>
                             <td>{{ $factory->address }}</td>
                             <td>
-                                <button type="button"
-                                    class="text-yellow-500 bg-yellow-100 btn hover:text-white hover:bg-yellow-600 focus:text-white focus:bg-yellow-600 focus:ring focus:ring-yellow-100 active:text-white active:bg-yellow-600 active:ring active:ring-yellow-100 dark:bg-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500 dark:hover:text-white dark:focus:bg-yellow-500 dark:focus:text-white dark:active:bg-yellow-500 dark:active:text-white dark:ring-yellow-400/20">Edit</button>
-
+                                <a href="{{ route('factory.edit', $factory->id) }}"
+                                    class="text-yellow-500 bg-yellow-100 btn hover:text-white hover:bg-yellow-600 focus:text-white focus:bg-yellow-600 focus:ring focus:ring-yellow-100 active:text-white active:bg-yellow-600 active:ring active:ring-yellow-100 dark:bg-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500 dark:hover:text-white dark:focus:bg-yellow-500 dark:focus:text-white dark:active:bg-yellow-500 dark:active:text-white dark:ring-yellow-400/20">
+                                    Edit
+                                </a>
                                 <form action="{{ route('factory.destroy', $factory->id) }}" method="POST"
                                     onsubmit="return confirm('Are you sure you want to delete this item?');">
                                     @csrf

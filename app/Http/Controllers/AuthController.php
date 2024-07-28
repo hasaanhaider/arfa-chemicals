@@ -37,7 +37,8 @@ class AuthController extends Controller
     {
         try{
             $user = $this->userService->login($request->only(['email', 'password']));
-            return view('welcome', compact('user'))->with('success', 'Successfully logged in');
+            return to_route('index')->with('success', 'Successfully logged in');
+            // return view('welcome', compact('user'))->with('success', 'Successfully logged in');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }

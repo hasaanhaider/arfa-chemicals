@@ -29,20 +29,21 @@ class FactoryService
         return Factory::create($data);
     }
 
-    public function editJob($id)
+    public function editFactory($id)
     {
-        return User::find(Auth::user()->id)->jobs()->where('id', $id)->first();
+        return Factory::find($id);
     }
-    public function updateJob(array $data)
+    public function updateFactory(array $data)
     {
         $this->validation($data);
-        $job = User::find(Auth::user()->id)->jobs()->find($data['id']);
-        if (!$job) {
-            throw ValidationException::withMessages(['error' => 'Job not found']);
-        }
-        $data['created_at'] = Carbon::parse($data['created_at']);
-        $data['updated_at'] = Carbon::now();
-        $job->update($data);
+
+        $job = Factory::findOrFail($data['id']);
+
+        $job->update([
+            'name' => $data['name'],
+            'address' => $data['address'],
+            'ntn_number' => $data['ntn_number'],
+        ]);
     }
 
     public function delete($id)

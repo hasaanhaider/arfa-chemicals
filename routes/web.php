@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('welcome');
 })->name('index');
 
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'indexView');
+    Route::get('/', 'indexView')->name('login');
     Route::post('/login-post', 'login')->name('login-post');
 });
 
@@ -30,6 +30,8 @@ Route::controller(FactoryController::class)->group(function () {
         Route::get('index', 'index')->name('factory.index');
         Route::get('create', 'create')->name('factory.create');
         Route::post('store', 'store')->name('factory.store');
+        Route::get('edit/{id}', 'edit')->name('factory.edit');
+        Route::put('update/{id}', 'update')->name('factory.update');
         Route::delete('destroy/{id}', 'destroy')->name('factory.destroy');
     });
 });
