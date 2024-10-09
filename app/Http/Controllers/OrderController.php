@@ -61,8 +61,12 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-        return view('orders.edit', compact('order'));
+        $products = Product::all(); // Get the products for the dropdown
+        $factory = Factory::find($order->factory_id); // Get the associated factory
+    
+        return view('orders.edit', compact('order', 'factory', 'products'));
     }
+    
 
     // Update the specified order in storage
     public function update(Request $request, $id)
@@ -75,16 +79,16 @@ class OrderController extends Controller
             'factory_id' => 'sometimes|required|exists:factories,id',
             'quantity' => 'sometimes|required|integer',
             'status' => 'sometimes|required|in:pending,approved,rejected,delivered',
-            'price_excluding_tax' => 'sometimes|required|integer',
-            'tax' => 'sometimes|required|integer',
-            'total_price' => 'sometimes|required|integer',
-            'price_per_kg' => 'sometimes|required|integer',
-            'tax_value' => 'sometimes|required|integer',
+            'price_excluding_tax' => 'sometimes|required',
+            'tax' => 'sometimes|required',
+            'total_price' => 'sometimes|required',
+            'price_per_kg' => 'sometimes|required',
+            'tax_value' => 'sometimes|required',
             'order_date' => 'sometimes|required|date_format:Y-m-d',
         ]);
 
         $order->update($request->all());
-        return redirect()->route('orders.index')->with('success', 'Order updated successfully.');
+        return redirect()->back()->with('success', 'Order updated successfully.');
     }
 
     // Remove the specified order from storage
