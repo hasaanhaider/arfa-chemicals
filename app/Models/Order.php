@@ -18,5 +18,8 @@ class Order extends Model
         'price_excluding_tax',
         'tax',
         'total_price',
+        'price_per_kg',
+        'tax_value',
+        'order_date',
     ];
 }

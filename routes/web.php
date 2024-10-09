@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +50,15 @@ Route::controller(ProductController::class)->group(function () {
         Route::delete('destroy/{id}', 'destroy')->name('product.destroy');
     });
 });
+
+Route::controller(OrderController::class)->group(function () {
+    Route::group(['middleware' => 'auth', 'prefix' => 'orders'], function () {
+        Route::get('index/{id}', 'index')->name('order.index');
+        Route::get('create/{id}', 'create')->name('order.create');
+        Route::post('store', 'store')->name('order.store');
+        Route::get('edit/{id}', 'edit')->name('order.edit');
+        Route::put('update/{id}', 'update')->name('order.update');
+        Route::delete('destroy/{id}', 'destroy')->name('order.destroy');
+    });
+});
+
