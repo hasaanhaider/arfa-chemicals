@@ -12,7 +12,11 @@ class OrderController extends Controller
     // Display a listing of the orders
     public function index($id)
     {
-        $orders = Order::where('factory_id', $id)->get();
+        $orders = Order::where('factory_id', $id)
+            ->leftjoin('products', 'orders.product_id', '=', 'products.id')
+            ->select('orders.*', 'products.name as product_name')
+            ->orderBy('id', 'desc')
+            ->get();
         $factory_id = $id;
         return view('orders.index', compact('orders', 'factory_id'));
     }

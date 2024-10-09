@@ -46,7 +46,7 @@
                             <th class="ltr:!text-left rtl:!text-right">Order ID</th>
                             <th>Product Name</th>
                             <th>Price Per Kg</th>
-                            <th>Quantity</th>
+                            <th>Quantity(KG)</th>
                             <th>Price Excluding Tax</th>
                             <th>Tax Value</th>
                             <th>Price Including tax</th>
@@ -61,13 +61,13 @@
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->product_name }}</td>
                             <td>RS{{ number_format($order->price_per_kg, 2) }}</td>
-                            <td>{{ $order->quantity }}</td>
+                            <td>{{ $order->quantity }}KG</td>
                             <td>RS{{ number_format($order->price_excluding_tax, 2) }}</td>
                             <td>RS{{ number_format($order->tax_value, 2) }}</td>
                             <td>RS{{ number_format($order->total_price, 2) }}</td>
                             <td>{{ $order->order_date }}</td>
                             <td>{{ $order->status }}</td>
-                            <td>
+                            <td class="flex justify-end items-center gap-2">
                                 <a href="{{ route('order.edit', $order->id) }}"
                                     class="text-yellow-500 d-block bg-yellow-100 btn hover:text-white hover:bg-yellow-600 focus:text-white focus:bg-yellow-600 focus:ring focus:ring-yellow-100 active:text-white active:bg-yellow-600 active:ring active:ring-yellow-100 dark:bg-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500 dark:hover:text-white dark:focus:bg-yellow-500 dark:focus:text-white dark:active:bg-yellow-500 dark:active:text-white dark:ring-yellow-400/20">
                                     Edit
